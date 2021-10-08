@@ -22,7 +22,9 @@ app.all('*', (req, res) => {
     axios({
       baseURL: process.env.API_URL,
       url: req.originalUrl,
-      headers: req.headers,
+      headers: {
+        ...(req.headers.authorization ? { Authorization: req.headers.authorization } : {}),
+      },
       method: req.method,
       responseType: 'stream',
     })
