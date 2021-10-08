@@ -24,6 +24,10 @@ app.all('*', (req, res) => {
   //   });
 });
 
+app.get('/test', (req, res) => {
+  res.json({ message: 'test' });
+});
+
 app.listen(port, () => {
   console.log(`Redirector api listening at port ${port}`);
 });
