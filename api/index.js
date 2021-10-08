@@ -29,5 +29,5 @@ app.get('/api/test', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Redirector api listening at port ${port}`);
+  console.log(`API gateway listening at port ${port}`);
 });
