@@ -21,6 +21,7 @@ app.all('*', (req, res) => {
   axios({
     baseURL: process.env.API_URL,
     url: req.originalUrl,
+    headers: req.headers,
     method: req.method,
     responseType: 'stream',
   })
