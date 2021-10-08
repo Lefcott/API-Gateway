@@ -8,7 +8,7 @@ app.use(express.json({ extended: false }));
 app.use((req, res, next) => {
   const origin = req.get('origin');
 
-  res.setHeader('Access-Control-Allow-Origin', origin);
+  if (origin) res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
