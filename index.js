@@ -6,7 +6,7 @@ app.use(express.json({ extended: false }));
 
 app.use('/api/product', product);
 
-app.get('/test', (req, res) => {
+app.all('*', (req, res) => {
   res.json({
     message: 'welcome',
   });
