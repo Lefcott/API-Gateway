@@ -18,21 +18,25 @@ app.use((req, res, next) => {
 });
 
 app.all('*', (req, res) => {
-  axios({
-    baseURL: process.env.API_URL,
-    url: req.originalUrl,
-    headers: req.headers,
-    method: req.method,
-    responseType: 'stream',
-  })
-    .then((response) => {
-      response.data.pipe(res);
-      res.status(response.status);
+  try {
+    axios({
+      baseURL: process.env.API_URL,
+      url: req.originalUrl,
+      headers: req.headers,
+      method: req.method,
+      responseType: 'stream',
     })
-    .catch((error) => {
-      error.response.data.pipe(res);
-      res.status(error.response.status);
-    });
+      .then((response) => {
+        response.data.pipe(res);
+        res.status(response.status);
+      })
+      .catch((error) => {
+        error.response.data.pipe(res);
+        res.status(error.response.status);
+      });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
