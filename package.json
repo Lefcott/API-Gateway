@@ -1,0 +1,22 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "description": "The objective of this repo is to be an HTTPS gateway between the frontend clients and one or more heroku free dynos that work under HTTP protocol.",
+  "main": "api/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lefcott/API-Gateway.git"
+  },
+  "author": "Leandro Cotti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lefcott/API-Gateway/issues"
+  },
+  "homepage": "https://github.com/Lefcott/API-Gateway#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
