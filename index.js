@@ -1,15 +1,25 @@
 const express = require('express');
+const { default: axios } = require('axios');
+
 const app = express();
-const product = require('./api/product');
 
 app.use(express.json({ extended: false }));
 
-app.use('/api/product', product);
-
 app.all('*', (req, res) => {
-  res.json({
-    message: 'welcome',
-  });
+  axios({
+    baseURL: process.env.API_URL,
+    url: req.originalUrl,
+    method: req.method,
+    responseType: 'stream',
+  })
+    .then((response) => {
+      response.data.pipe(res);
+      res.status(response.status);
+    })
+    .catch((error) => {
+      error.response.data.pipe(res);
+      res.status(error.response.status);
+    });
 });
 
 const PORT = process.env.PORT || 8080;
